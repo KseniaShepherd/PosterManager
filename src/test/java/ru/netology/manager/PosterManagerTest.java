@@ -13,10 +13,9 @@ class PosterManagerTest {
         Film film = new Film(1, 1, "first film", "drama", "12/12/2021");
         posterManager.add(film);
 
-        Film[] expected = new Film[]{film, null, null, null, null, null, null, null, null, null};
+        Film[] expected = new Film[]{film};
 
         assertArrayEquals(expected, posterManager.getFilms());
-
     }
 
     @Test
@@ -52,39 +51,6 @@ class PosterManagerTest {
 
     }
 
-    @Test
-    void shouldAddFilmsToManagerPresetSize() {
-
-        PosterManager posterManager = new PosterManager(3);
-        Film firstFilm = new Film(1, 1, "first film", "drama", "12/12/2021");
-        Film secondFilm = new Film(2, 2, "seecond film", "comedy", "13/12/2021");
-        Film thirdFilm = new Film(3, 3, "third film", "drama", "13/12/2021");
-        posterManager.add(firstFilm);
-        posterManager.add(secondFilm);
-        posterManager.add(thirdFilm);
-
-        Film[] expected = new Film[]{firstFilm, secondFilm, thirdFilm};
-
-        assertArrayEquals(expected, posterManager.getFilms());
-
-    }
-    @Test
-    void shouldNotAddFilmWhenPosterManagerFilled() {
-        PosterManager posterManager = new PosterManager(3);
-        Film firstFilm = new Film(1, 1, "first film", "drama", "12/12/2021");
-        Film secondFilm = new Film(2, 2, "seecond film", "comedy", "13/12/2021");
-        Film thirdFilm = new Film(3, 3, "third film", "drama", "13/12/2021");
-        Film fourthFilm = new Film(4, 4, "fourth film", "drama", "13/12/2021");
-
-        posterManager.add(firstFilm);
-        posterManager.add(secondFilm);
-        posterManager.add(thirdFilm);
-        posterManager.add(fourthFilm);
-
-        Film[] expected = new Film[]{firstFilm, secondFilm, thirdFilm};
-
-        assertArrayEquals(expected, posterManager.getFilms());
-    }
 
     @Test
     void shouldGetTenFilmsWhenManagerHaveTenFilms() {
@@ -117,6 +83,7 @@ class PosterManagerTest {
                 fourthFilm, thirdFilm, secondFilm, firstFilm};
         assertArrayEquals(expected, actual);
     }
+
     @Test
     void shouldGetTenFilmsWhenManagerHaveMoreThanTenFilms() {
 
