@@ -12,8 +12,14 @@ public class PosterManager {
     }
 
     public PosterManager(int filmsLimit) {
+
+        if (filmsLimit >= 10) {
+            this.limit = 10;
+            return;
+        }
         this.limit = filmsLimit;
     }
+
 
     public Film[] getFilms() {
         return films;
@@ -36,12 +42,7 @@ public class PosterManager {
 
 
     public Film[] getAll() {
-        int resultLength;
-        if (getLimit() >= 10) {
-            resultLength = 10;
-        } else {
-            resultLength = getLimit();
-        }
+        int resultLength = getLimit();
         Film[] result = new Film[resultLength];
         for (int i = 0; i < result.length; i++) {
             int index = films.length - i - 1;
