@@ -85,12 +85,12 @@ class PosterManagerTest {
     }
 
     @Test
-    void shouldGetTenFilmsWhenManagerHaveMoreThanTenFilms() {
+    void shouldGetTenFilmsWhenManagerHaveFilmsMoreLimit() {
 
         PosterManager posterManager = new PosterManager(11);
 
         Film firstFilm = new Film(1, 1, "first film", "drama", "12/12/2021");
-        Film secondFilm = new Film(2, 2, "seecond film", "comedy", "13/12/2021");
+        Film secondFilm = new Film(2, 2, "second film", "comedy", "13/12/2021");
         Film thirdFilm = new Film(3, 3, "third film", "drama", "13/12/2021");
         Film fourthFilm = new Film(4, 4, "fourth film", "drama", "13/12/2021");
         Film fifthFilm = new Film(5, 5, "fifth film", "comedy", "13/12/2021");
@@ -121,7 +121,7 @@ class PosterManagerTest {
     }
 
     @Test
-    void shouldGetAllFilmsWhenManagerHaveLessThanTenFilms() {
+    void shouldGetAllFilmsWhenManagerHaveFilmsEqualLimit() {
 
         PosterManager posterManager = new PosterManager(3);
 
@@ -138,6 +138,21 @@ class PosterManagerTest {
         Film[] actual = posterManager.getAll();
 
         Film[] expected = new Film[]{thirdFilm, secondFilm, firstFilm};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGetAllFilmsWhenManagerHaveFilmsLessLimit() {
+        PosterManager posterManager = new PosterManager(3);
+        Film firstFilm = new Film(1, 1, "first film", "drama", "12/12/2021");
+        Film secondFilm = new Film(2, 2, "seecond film", "comedy", "13/12/2021");
+
+        posterManager.add(firstFilm);
+        posterManager.add(secondFilm);
+
+        Film[] actual = posterManager.getAll();
+
+        Film[] expected = new Film[]{ secondFilm, firstFilm};
         assertArrayEquals(expected, actual);
     }
 }

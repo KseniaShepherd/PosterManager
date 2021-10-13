@@ -42,7 +42,12 @@ public class PosterManager {
 
 
     public Film[] getAll() {
-        int resultLength = getLimit();
+        int resultLength;
+        if (films.length < getLimit()) {
+            resultLength = films.length;
+        } else {
+            resultLength = getLimit();
+        }
         Film[] result = new Film[resultLength];
         for (int i = 0; i < result.length; i++) {
             int index = films.length - i - 1;
